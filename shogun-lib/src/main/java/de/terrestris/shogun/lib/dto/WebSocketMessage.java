@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class WebSocketMessage {
+public class WebSocketMessage<DataType extends Serializable> {
 
     public WebSocketMessage(String message) {
         this.message = message;
@@ -20,6 +21,6 @@ public class WebSocketMessage {
 
     private String message;
 
-    private Map<String, Object> data = Collections.emptyMap();
+    private DataType data;
 
 }

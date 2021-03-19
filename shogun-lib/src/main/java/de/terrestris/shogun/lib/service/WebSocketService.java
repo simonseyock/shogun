@@ -6,8 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-@Data
-@Slf4j
 @Service
 public class WebSocketService {
     private final SimpMessagingTemplate simpMessagingTemplate;
@@ -18,11 +16,11 @@ public class WebSocketService {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
-    public void sendMessage(WebSocketMessage message) {
+    public void sendMessage(WebSocketMessage<?> message) {
         simpMessagingTemplate.convertAndSend(DESTINATION_PREFIX + DEFAULT_DESTINATION, message);
     }
 
-    public void sendMessage(WebSocketMessage message, String destinationEndPoint) {
+    public void sendMessage(WebSocketMessage<?> message, String destinationEndPoint) {
         simpMessagingTemplate.convertAndSend(DESTINATION_PREFIX + destinationEndPoint, message);
     }
 }
